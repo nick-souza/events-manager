@@ -2,6 +2,8 @@ package com.nicolas.EventManager.controller;
 
 import com.nicolas.EventManager.domain.Event;
 import com.nicolas.EventManager.dto.EventDto;
+import com.nicolas.EventManager.exception.BadRequestException;
+import com.nicolas.EventManager.exception.NotFoundException;
 import com.nicolas.EventManager.service.EventService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class EventController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Event> findEventById(@PathVariable Long id) throws Exception {
+    public ResponseEntity<Event> findEventById(@PathVariable Long id) throws NotFoundException {
         Event event = this.eventService.findEventById(id);
 
         return new ResponseEntity<>(event, HttpStatus.OK);
@@ -37,14 +39,14 @@ public class EventController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Event> createEvent(@Valid @RequestBody EventDto data) throws Exception {
+    public ResponseEntity<Event> createEvent(@Valid @RequestBody EventDto data) throws BadRequestException {
         Event newEvent = this.eventService.createEvent(data);
 
         return new ResponseEntity<>(newEvent, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Event> deleteEvent(@PathVariable Long id) throws Exception {
+    public ResponseEntity<Event> deleteEvent(@PathVariable Long id) throws NotFoundException {
         this.eventService.deleteEvent(id);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
