@@ -36,7 +36,7 @@ public class EventController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Event> createEvent(@RequestBody EventDto data) {
+    public ResponseEntity<Event> createEvent(@RequestBody EventDto data) throws Exception {
         Event newEvent = this.eventService.createEvent(data);
 
         return new ResponseEntity<>(newEvent, HttpStatus.CREATED);

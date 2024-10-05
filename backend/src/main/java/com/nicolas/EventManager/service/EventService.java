@@ -25,7 +25,9 @@ public class EventService {
         return this.eventRepository.findAllByOrderByStartDateAsc();
     }
 
-    public Event createEvent(EventDto data) {
+    public Event createEvent(EventDto data) throws Exception {
+        this.validateDates(data);
+
         Event event = new Event(data);
         this.saveEvent(event);
 
@@ -39,5 +41,11 @@ public class EventService {
 
     private void saveEvent(Event event) {
         this.eventRepository.save(event);
+    }
+
+    private void validateDates(EventDto data) throws Exception {
+        if (data.startDate().isAfter(data.endDate())) {
+            throw new Exception("Start date must be before end date");
+        }
     }
 }
