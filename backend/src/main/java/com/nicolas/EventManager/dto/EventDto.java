@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 public record EventDto(
         Long id,
 
-        @NotNull(message = "Name is required")
-        String name,
+        @NotNull(message = "Title is required")
+        String title,
 
         @NotNull(message = "Start date is required")
         LocalDateTime startDate,

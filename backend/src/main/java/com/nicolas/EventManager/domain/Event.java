@@ -29,7 +29,7 @@ public class Event {
     private EventStatus status;
 
     public Event (EventDto data) {
-        this.title = data.name();
+        this.title = data.title();
         this.startDate = data.startDate();
         this.endDate = data.endDate();
         this.price = data.price();
