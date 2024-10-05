@@ -23,7 +23,7 @@ public class Event {
 
     private LocalDateTime endDate;
 
-    private double price;
+    private Double price;
 
     private EventStatus status;
 }
