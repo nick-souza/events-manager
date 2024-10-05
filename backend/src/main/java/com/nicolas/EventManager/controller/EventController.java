@@ -3,6 +3,7 @@ package com.nicolas.EventManager.controller;
 import com.nicolas.EventManager.domain.Event;
 import com.nicolas.EventManager.dto.EventDto;
 import com.nicolas.EventManager.service.EventService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +37,7 @@ public class EventController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Event> createEvent(@RequestBody EventDto data) throws Exception {
+    public ResponseEntity<Event> createEvent(@Valid @RequestBody EventDto data) throws Exception {
         Event newEvent = this.eventService.createEvent(data);
 
         return new ResponseEntity<>(newEvent, HttpStatus.CREATED);
