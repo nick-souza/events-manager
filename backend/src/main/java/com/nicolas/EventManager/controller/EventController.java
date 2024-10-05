@@ -1,7 +1,7 @@
 package com.nicolas.EventManager.controller;
 
-import com.nicolas.EventManager.domain.Event;
 import com.nicolas.EventManager.dto.EventDto;
+import com.nicolas.EventManager.dto.EventResponseDto;
 import com.nicolas.EventManager.exception.BadRequestException;
 import com.nicolas.EventManager.exception.NotFoundException;
 import com.nicolas.EventManager.service.EventService;
@@ -25,28 +25,28 @@ public class EventController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Event> findEventById(@PathVariable Long id) throws NotFoundException {
-        Event event = this.eventService.findEventById(id);
+    public ResponseEntity<EventResponseDto> findEventById(@PathVariable Long id) throws NotFoundException {
+        EventResponseDto event = this.eventService.findEventById(id);
 
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 
     @GetMapping("")
-    public ResponseEntity<List<Event>> findAllEvents() {
-        List<Event> events = this.eventService.findAllEvents();
+    public ResponseEntity<List<EventResponseDto>> findAllEvents() {
+        List<EventResponseDto> events = this.eventService.findAllEvents();
 
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<Event> createEvent(@Valid @RequestBody EventDto data) throws BadRequestException {
-        Event newEvent = this.eventService.createEvent(data);
+    public ResponseEntity<EventResponseDto> createEvent(@Valid @RequestBody EventDto data) throws BadRequestException {
+        EventResponseDto newEvent = this.eventService.createEvent(data);
 
         return new ResponseEntity<>(newEvent, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Event> deleteEvent(@PathVariable Long id) throws NotFoundException {
+    public ResponseEntity<EventResponseDto> deleteEvent(@PathVariable Long id) throws NotFoundException {
         this.eventService.deleteEvent(id);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
