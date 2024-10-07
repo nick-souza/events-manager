@@ -40,7 +40,7 @@ export default function EventCard({ event, deleteEvent, editEvent }: EventCardPr
 				</div>
 			</div>
 
-			<div className="details" style={{ alignItems: "flex-end" }}>
+			<div className="details details-btn">
 				<div>
 					<Tag>
 						<Tooltip title="Price">

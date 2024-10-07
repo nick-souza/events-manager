@@ -9,6 +9,9 @@ import { IEvent } from "../../interfaces/Event";
 import RightDrawer from "../partials/drawer";
 import EventForm from "../partials/form";
 
+import dayjs from "dayjs";
+import React from "react";
+
 import "./list.css";
 
 export default function List() {
@@ -45,11 +48,13 @@ export default function List() {
 		setDrawerVisible(true);
 	};
 
+	let lastMonthYear = "";
+
 	return (
 		<Spin spinning={loading} className="list-spin">
 			<div className="list-container">
 				<Row gutter={[24, 18]} className="list-wrapper">
-					<Col span={12}>
+					<Col span={12} sm={12} xs={20}>
 						<Input
 							allowClear
 							autoComplete="off"
@@ -60,9 +65,9 @@ export default function List() {
 						/>
 					</Col>
 
-					<Col span={12} style={{ float: "right" }}>
+					<Col span={12} sm={12} xs={4} className="list-button">
 						<Button onClick={() => setDrawerVisible(true)} disabled={loading} type="primary" icon={<PlusOutlined />}>
-							Create new event
+							<span className="hide-on-small">Create new event</span>
 						</Button>
 					</Col>
 
@@ -76,11 +81,26 @@ export default function List() {
 						</>
 					)}
 
-					{events?.map((event) => (
-						<Col span={24} key={event.id}>
-							<EventCard event={event} editEvent={onEditEvent} deleteEvent={deleteEvent} />
-						</Col>
-					))}
+					{events.map((event) => {
+						const monthYear = dayjs(event.startDate, "DD/MM/YYYY HH:mm").format("MMMM YYYY");
+						const showMonthYear = monthYear !== lastMonthYear;
+
+						lastMonthYear = monthYear;
+
+						return (
+							<React.Fragment key={event.id}>
+								{showMonthYear && (
+									<Col span={24}>
+										<h2 style={{ margin: "0" }}>{monthYear}</h2>
+									</Col>
+								)}
+
+								<Col span={24}>
+									<EventCard event={event} editEvent={onEditEvent} deleteEvent={deleteEvent} />
+								</Col>
+							</React.Fragment>
+						);
+					})}
 
 					{!loading && events.length === 0 && (
 						<Col span={24} style={{ marginTop: "24px" }}>
