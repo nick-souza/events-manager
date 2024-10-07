@@ -1,8 +1,6 @@
-version: "3.8"
-
 services:
   db:
-    container_name: postgres_db
+    container_name: db
     image: postgres:alpine
     environment:
       POSTGRES_USER: root
@@ -10,13 +8,14 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./backend/sql/init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: unless-stopped
 
-  app:
+  api:
+    image: event-manager-api:tag
     build:
-      context: .
-    container_name: app
+      context: ./backend
+    container_name: api
     depends_on:
       - db
     environment:
@@ -29,6 +28,16 @@ services:
       - TZ=America/Sao_Paulo
     ports:
       - "8080:8080"
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    depends_on:
+        - api
+    ports:
+        - "3500:3500"
+    restart: unless-stopped
 
 volumes:
   postgres_data:
