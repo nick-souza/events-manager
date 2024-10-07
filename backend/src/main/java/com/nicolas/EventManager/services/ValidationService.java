@@ -9,11 +9,11 @@ import java.time.LocalDateTime;
 public class ValidationService {
 
     public void validateDates(LocalDateTime startDate, LocalDateTime endDate) throws BadRequestException {
-        LocalDateTime now = LocalDateTime.now();
+//        LocalDateTime now = LocalDateTime.now();
 
-        if (endDate.isBefore(now)) {
-            throw new BadRequestException("End date must be in the future");
-        }
+//        if (endDate.isBefore(now)) {
+//            throw new BadRequestException("End date must be in the future");
+//        }
 
         if (startDate.isAfter(endDate)) {
             throw new BadRequestException("Start date must be before end date");

@@ -31,13 +31,13 @@ public class ValidationServiceTest {
         assertThrows(BadRequestException.class, () -> validationService.validateDates(startDate, endDate));
     }
 
-    @Test
-    @DisplayName("Should throw an exception when the end date is in the past")
-    public void testValidateDates_EndDateInPast() {
-        LocalDateTime startDate = LocalDateTime.now().minusDays(2);
-        LocalDateTime endDate = LocalDateTime.now().minusDays(1);
-        assertThrows(BadRequestException.class, () -> validationService.validateDates(startDate, endDate));
-    }
+//    @Test
+//    @DisplayName("Should throw an exception when the end date is in the past")
+//    public void testValidateDates_EndDateInPast() {
+//        LocalDateTime startDate = LocalDateTime.now().minusDays(2);
+//        LocalDateTime endDate = LocalDateTime.now().minusDays(1);
+//        assertThrows(BadRequestException.class, () -> validationService.validateDates(startDate, endDate));
+//    }
 
     @Test
     @DisplayName("Should not throw an exception when the price is valid")
