@@ -45,6 +45,13 @@ public class EventController {
         return new ResponseEntity<>(newEvent, HttpStatus.CREATED);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<EventResponseDto> updateEvent(@PathVariable Long id, @Valid @RequestBody EventDto data) throws NotFoundException {
+        EventResponseDto updatedEvent = this.eventService.updateEvent(id, data);
+
+        return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<EventResponseDto> deleteEvent(@PathVariable Long id) throws NotFoundException {
         this.eventService.deleteEvent(id);
