@@ -1,3 +1,3 @@
-package com.nicolas.EventManager.dto;
+package com.nicolas.EventManager.dtos;
 
 public record ExceptionDto(String message) { }

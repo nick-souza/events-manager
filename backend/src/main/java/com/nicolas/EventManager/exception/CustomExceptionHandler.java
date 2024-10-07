@@ -1,6 +1,6 @@
 package com.nicolas.EventManager.exception;
 
-import com.nicolas.EventManager.dto.ExceptionDto;
+import com.nicolas.EventManager.dtos.ExceptionDto;
 import io.micrometer.common.lang.NonNull;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

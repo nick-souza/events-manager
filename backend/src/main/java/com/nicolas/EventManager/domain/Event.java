@@ -1,6 +1,6 @@
 package com.nicolas.EventManager.domain;
 
-import com.nicolas.EventManager.dto.EventDto;
+import com.nicolas.EventManager.dtos.EventDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

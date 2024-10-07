@@ -1,4 +1,4 @@
-package com.nicolas.EventManager.repository;
+package com.nicolas.EventManager.repositories;
 
 import com.nicolas.EventManager.domain.Event;
 import com.nicolas.EventManager.domain.EventStatus;

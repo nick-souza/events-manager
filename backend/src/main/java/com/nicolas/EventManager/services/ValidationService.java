@@ -1,4 +1,4 @@
-package com.nicolas.EventManager.service;
+package com.nicolas.EventManager.services;
 
 import com.nicolas.EventManager.exception.BadRequestException;
 import org.springframework.stereotype.Service;
