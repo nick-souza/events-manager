@@ -9,17 +9,18 @@ import com.nicolas.EventManager.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class EventService {
     private final EventRepository eventRepository;
+    private final ValidationService validationService;
 
     @Autowired
-    public EventService(EventRepository eventRepository) {
+    public EventService(EventRepository eventRepository, ValidationService validationService) {
         this.eventRepository = eventRepository;
+        this.validationService = validationService;
     }
 
     public EventResponseDto findEventById(Long id) throws NotFoundException {
@@ -33,8 +34,8 @@ public class EventService {
     }
 
     public EventResponseDto createEvent(EventDto data) throws BadRequestException {
-        this.validatePrice(data.price());
-        this.validateDates(data.startDate(), data.endDate());
+        validationService.validatePrice(data.price());
+        validationService.validateDates(data.getStartDate(), data.getEndDate());
 
         Event event = new Event(data);
         this.saveEvent(event);
@@ -49,23 +50,5 @@ public class EventService {
 
     private void saveEvent(Event event) {
         this.eventRepository.save(event);
-    }
-
-    private void validateDates(LocalDateTime startDate, LocalDateTime endDate) throws BadRequestException {
-        LocalDateTime now = LocalDateTime.now();
-
-        if (endDate.isBefore(now)) {
-            throw new BadRequestException("End date must be in the future");
-        }
-
-        if (startDate.isAfter(endDate)) {
-            throw new BadRequestException("Start date must be before end date");
-        }
-    }
-
-    private void validatePrice(Double price) throws BadRequestException {
-        if (price < 0) {
-            throw new BadRequestException("Price must be greater than 0");
-        }
     }
 }
