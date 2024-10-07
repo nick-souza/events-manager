@@ -7,7 +7,7 @@
 [![Postgres](https://img.shields.io/badge/Postgres-%23316192.svg?logo=postgresql&logoColor=white)](#)
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)](#)
 
-This repository contains a fullstack application for managing events, developed as part of a technical challenge. The application features a **Java** backend using **Spring Boot**, a **React** with **Typescript** frontend and a **PostgreSQL** database, all containerized using **Docker Compose**.
+This repository contains a fullstack application for managing events. The application features a **Java** backend using **Spring Boot**, a **React** with **Typescript** frontend and a **PostgreSQL** database, all containerized using **Docker Compose**.
 
 ## Technology Stack
 
