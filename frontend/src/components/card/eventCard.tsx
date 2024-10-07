@@ -2,7 +2,8 @@ import { Button, Popconfirm, Tag, Tooltip } from "antd";
 import { EventStatus, IEvent } from "../../interfaces/Event";
 
 import { ArrowRightOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import "./eventCard.css";
 
 type EventCardProps = {
@@ -13,12 +14,30 @@ type EventCardProps = {
 
 export default function EventCard({ event, deleteEvent, editEvent }: EventCardProps) {
 	const [visible, setVisible] = useState(false);
+	const [popupPlacement, setPopupPlacement] = useState<"left" | "top">("left");
 
 	const statusColor = {
 		[EventStatus[EventStatus.STARTED]]: "green",
 		[EventStatus[EventStatus.COMPLETED]]: "blue",
 		[EventStatus[EventStatus.PAUSED]]: "red",
 	};
+
+	useEffect(() => {
+		const updatePlacement = () => {
+			if (window.innerWidth < 768) {
+				setPopupPlacement("top");
+			} else {
+				setPopupPlacement("left");
+			}
+		};
+
+		updatePlacement();
+		window.addEventListener("resize", updatePlacement);
+
+		return () => {
+			window.removeEventListener("resize", updatePlacement);
+		};
+	}, []);
 
 	return (
 		<div className="item" onMouseEnter={() => setVisible(true)} onMouseLeave={() => setVisible(false)}>
@@ -65,7 +84,7 @@ export default function EventCard({ event, deleteEvent, editEvent }: EventCardPr
 							<Popconfirm
 								okText="Yes"
 								cancelText="No"
-								placement="left"
+								placement={popupPlacement}
 								onConfirm={() => deleteEvent(event.id)}
 								title="Are you sure you want to delete this event?"
 							>
