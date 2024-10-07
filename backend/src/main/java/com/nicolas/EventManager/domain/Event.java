@@ -30,8 +30,8 @@ public class Event {
 
     public Event (EventDto data) {
         this.title = data.title();
-        this.startDate = data.startDate();
-        this.endDate = data.endDate();
+        this.startDate = data.getStartDate();
+        this.endDate = data.getEndDate();
         this.price = data.price();
         this.status = data.status();
     }
