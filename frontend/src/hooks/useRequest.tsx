@@ -1,6 +1,7 @@
 import { AxiosError, AxiosRequestConfig } from "axios";
 import { useState } from "react";
 import { api } from "../services/api";
+import { useNotification } from "./useNotification";
 
 interface UseRequestResult {
 	loading: boolean;
@@ -23,6 +24,7 @@ type ErrorObj = {
 };
 
 export const useRequest = (): UseRequestResult => {
+	const notify = useNotification();
 	const [loading, setLoading] = useState<boolean>(false);
 
 	const handleRequest = async <T,>(request: () => Promise<T>): Promise<Response<T>> => {
@@ -44,9 +46,11 @@ export const useRequest = (): UseRequestResult => {
 	const errorHandler = (errorResponse: AxiosError<ErrorObj>) => {
 		const message = errorResponse.response?.data?.message;
 
-		console.log("Error: ", message);
-
-		// TODO: Implement error handling
+		if (message) {
+			notify.error(message);
+		} else {
+			notify.error("An error occurred");
+		}
 	};
 
 	const request = {
