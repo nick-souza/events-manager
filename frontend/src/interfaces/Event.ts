@@ -1,6 +1,6 @@
 export interface IEvent {
 	id: number;
-	tittle: string;
+	title: string;
 	startDate: string;
 	endDate: string;
 	price: number;
@@ -8,7 +8,7 @@ export interface IEvent {
 }
 
 export enum EventStatus {
-	Started,
-	Completed,
-	Paused,
+	STARTED,
+	COMPLETED,
+	PAUSED,
 }
