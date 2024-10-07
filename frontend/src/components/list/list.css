@@ -1,0 +1,25 @@
+.list-spin {
+	width: 100%;
+	height: 100%;
+}
+
+.list-container {
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	position: relative;
+	margin-top: 104px;
+}
+
+.list-wrapper {
+	/* TODO: Adjust based on the device width */
+	width: 50%;
+}
+
+.list-skeleton {
+	width: 100%;
+	height: 100px !important;
+}
