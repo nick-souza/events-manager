@@ -34,8 +34,9 @@ mvn clean package
 ```
 3. Navigate back to the project root and start the containers
 ```
-docker-compose up --build
+docker-compose -f event-manager-docker-compose.yaml up --build
 ```
+4. The frontend can now be accessed at [http://localhost:3500](http://localhost:3500)
 
 ### Port Configuration
 - Backend: `8080`
