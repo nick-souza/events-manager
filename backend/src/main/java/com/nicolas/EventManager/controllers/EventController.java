@@ -1,10 +1,10 @@
-package com.nicolas.EventManager.controller;
+package com.nicolas.EventManager.controllers;
 
-import com.nicolas.EventManager.dto.EventDto;
-import com.nicolas.EventManager.dto.EventResponseDto;
+import com.nicolas.EventManager.dtos.EventDto;
+import com.nicolas.EventManager.dtos.EventResponseDto;
 import com.nicolas.EventManager.exception.BadRequestException;
 import com.nicolas.EventManager.exception.NotFoundException;
-import com.nicolas.EventManager.service.EventService;
+import com.nicolas.EventManager.services.EventService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

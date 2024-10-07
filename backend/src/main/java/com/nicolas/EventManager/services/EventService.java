@@ -1,11 +1,11 @@
-package com.nicolas.EventManager.service;
+package com.nicolas.EventManager.services;
 
 import com.nicolas.EventManager.domain.Event;
-import com.nicolas.EventManager.dto.EventDto;
-import com.nicolas.EventManager.dto.EventResponseDto;
+import com.nicolas.EventManager.dtos.EventDto;
+import com.nicolas.EventManager.dtos.EventResponseDto;
 import com.nicolas.EventManager.exception.BadRequestException;
 import com.nicolas.EventManager.exception.NotFoundException;
-import com.nicolas.EventManager.repository.EventRepository;
+import com.nicolas.EventManager.repositories.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.nicolas.EventManager.dto;
+package com.nicolas.EventManager.dtos;
 
 import com.nicolas.EventManager.domain.Event;
 import com.nicolas.EventManager.domain.EventStatus;

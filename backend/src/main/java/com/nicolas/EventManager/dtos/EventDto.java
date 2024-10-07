@@ -1,12 +1,14 @@
-package com.nicolas.EventManager.dto;
+package com.nicolas.EventManager.dtos;
 
 import com.nicolas.EventManager.domain.EventStatus;
+import com.nicolas.EventManager.exception.BadRequestException;
 import com.nicolas.EventManager.util.DateTimeUtils;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
 public record EventDto(
         Long id,
@@ -30,10 +32,18 @@ public record EventDto(
 ) {
 
     public LocalDateTime getStartDate() {
-        return LocalDateTime.parse(startDate, DateTimeUtils.DATE_FORMAT);
+        try {
+            return LocalDateTime.parse(startDate, DateTimeUtils.DATE_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new BadRequestException("Invalid date format");
+        }
     }
 
     public LocalDateTime getEndDate() {
-        return LocalDateTime.parse(endDate, DateTimeUtils.DATE_FORMAT);
+        try {
+            return LocalDateTime.parse(endDate, DateTimeUtils.DATE_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new BadRequestException("Invalid date format");
+        }
     }
 }
