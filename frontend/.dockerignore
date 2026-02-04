@@ -1,1 +1,40 @@
-node_modules/
+# Dependencies
+node_modules
+
+# Build output
+dist
+build
+.out
+
+# Package manager logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# VCS
+.git
+.gitignore
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.idea
+.vscode
+
+# Docker
+Dockerfile
+docker-compose*.yml
+
+# Tests & coverage
+coverage
+
+# Misc
+README.md
