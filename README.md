@@ -22,21 +22,15 @@ This repository contains a fullstack application for managing events. The applic
 Ensure you have the following installed:
 - Docker
 - Docker Compose
-- Java Development Kit (JDK) 17
-- Maven
 
 ### Running the application with Docker
 
 1. Clone the repository
-2. Enter the backend folder and build the **JAR** file
+2. Run docker-compose
 ```
-mvn clean package
+docker-compose up --build -d
 ```
-3. Navigate back to the project root and start the containers
-```
-docker-compose -f event-manager-docker-compose.yaml up --build
-```
-4. The frontend can now be accessed at [http://localhost:3500](http://localhost:3500)
+3. The frontend can now be accessed at [http://localhost:3500](http://localhost:3500)
 
 ### Port Configuration
 - Backend: `8080`
